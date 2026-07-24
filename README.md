@@ -1,71 +1,352 @@
-# QR Canvas Studio — Modern SaaS Platform
+# QR Canvas
 
-> **Tagline**: Create Beautiful QR Codes Effortlessly.  
-> **Product Vision**: A premium web-based QR Design Studio inspired by Canva, Linear, Raycast, Apple, Arc Browser, and Stripe Dashboard.
+A modern web application for creating, customizing, and exporting QR codes with a real-time design interface.
 
----
-
-## ✨ Key Features & Architecture
-
-- **Sub-16ms Real-Time Live Preview**: Zero-latency interactive SVG vector canvas rendering engine.
-- **13+ QR Payload Types**: URL, WiFi, vCard 4.0, Text, Email, Phone, SMS, WhatsApp, iCal Events, Geo Location, Social Multi-link, PDF, App Store, UPI Payments.
-- **Module Shapes**: Square, Rounded, Dots, Diamond, Bubble, Circle, Hexagon.
-- **Eye Customization**: Custom outer/inner eye frames and eye-specific color overrides.
-- **Gradients & Colors**: Dual-stop linear & radial gradients, solid colors, transparent background support.
-- **Brand Logo Overlay**: High-fidelity logo upload, scale control, margin protection, background removal.
-- **Call-to-Action Frames**: Top & Bottom badges with custom text ("Scan Me", "View Menu", "Connect WiFi").
-- **Studio Templates Gallery**: Pre-built curated presets (Linear Tech, Gourmet Menu, Cyber WiFi, Stripe Minimal, Creator Sunset, Wedding RSVP).
-- **History & Favorites**: Auto-saving design workspace with search, filter, star favorites, duplicate, and persistent storage.
-- **Export Engine**: High-resolution PNG (up to 4096px), crisp vector SVG, and print-ready PDF document generator.
-- **Global Command Palette (`Ctrl+K` / `Cmd+K`)**: Quick launcher for instant payload switches, template browsing, and export.
-- **Keyboard Shortcuts**: Quick Save (`Ctrl+S`), Command Palette (`Ctrl+K`).
+QR Canvas provides multiple QR code types, customizable styles, templates, and export options through a clean and responsive user interface.
 
 ---
 
-## 🛠 Tech Stack
+## Preview
 
-### Frontend
-- **Framework**: React + Vite + TypeScript
-- **Styling**: Tailwind CSS v4 + Glassmorphism UI tokens
-- **Icons**: Lucide Icons
-- **State Management**: Zustand with persistent storage
-- **Animations**: Framer Motion & Canvas Confetti
-- **Document Export**: jsPDF & HTML5 Canvas
+> Add screenshots or GIFs here after deployment.
 
-### Backend
-- **Framework**: FastAPI (Python 3.14)
-- **Engine**: Segno (SVG Vector Generator) & Pillow (Raster Image Processing)
-- **Validation**: Pydantic v2
-- **ORMs/DB**: SQLAlchemy 2.0 & PostgreSQL ready
+| Home | QR Studio |
+|------|-----------|
+| ![Home](docs/screenshots/home.png) | ![Studio](docs/screenshots/studio.png) |
 
 ---
 
-## 🚀 Quick Start Guide
+# Features
 
-### Option A: Standard CLI Launch
+### QR Payload Types
 
-1. **Start Backend**:
-   ```bash
-   cd backend
-   python -m pip install -r requirements.txt
-   python -m uvicorn app.main:app --reload --port 8000
-   ```
-
-2. **Start Frontend Studio**:
-   ```bash
-   cd frontend
-   npm install
-   npm run dev
-   ```
-
-3. Open **`http://localhost:5173`** in your browser!
-
-### Option B: Windows One-Click Launcher
-
-Simply double-click **`run_dev.bat`** in the project root directory to launch both the FastAPI backend and Vite frontend studio automatically!
+- URL / Website
+- Plain Text
+- WiFi Network
+- Email
+- Phone Call
+- SMS
+- WhatsApp
+- vCard Contact
+- Calendar Event
+- Geo Location
+- Social Media Links
+- PDF (In Progress)
+- App Store
+- UPI Payment
 
 ---
 
-## 📄 Documentation & Artifacts
+### QR Customization
 
-- Technical Implementation Plan & Product Architecture: **[`implementation_plan.md`](file:///C:/Users/Pradeep/.gemini/antigravity/brain/e9f6238f-3af2-4a3e-a78f-209fa029297e/implementation_plan.md)**
+- Multiple module styles
+  - Square
+  - Rounded
+  - Dots
+  - Diamond
+  - Bubble
+  - Circle
+  - Hexagon
+
+- Eye style customization
+- Foreground and background colors
+- Gradient support
+- Transparent background
+- Logo overlay
+- CTA frames
+- Live preview
+
+---
+
+### Export Options
+
+- PNG
+- SVG
+- PDF
+
+---
+
+### Additional Features
+
+- Studio Templates
+- Design History
+- Favorites
+- Duplicate Designs
+- Keyboard Shortcuts
+- Responsive Layout
+- Dark Theme
+
+---
+
+# Tech Stack
+
+## Frontend
+
+- React
+- Vite
+- TypeScript
+- Tailwind CSS
+- Zustand
+- Framer Motion
+- Lucide React
+
+## Backend
+
+- FastAPI
+- Python
+- Segno
+- Pillow
+- SQLAlchemy
+
+## Database
+
+- PostgreSQL (Supported)
+
+---
+
+# Folder Structure
+
+```text
+QRCanvas
+│
+├── frontend
+│   ├── src
+│   │   ├── components
+│   │   ├── pages
+│   │   ├── hooks
+│   │   ├── services
+│   │   ├── utils
+│   │   ├── types
+│   │   └── assets
+│   │
+│   └── public
+│
+├── backend
+│   ├── app
+│   ├── api
+│   ├── models
+│   ├── schemas
+│   ├── services
+│   └── utils
+│
+├── docs
+│
+├── assets
+│
+└── README.md
+```
+
+---
+
+# Getting Started
+
+## Clone Repository
+
+```bash
+git clone https://github.com/YOUR_USERNAME/QRCanvas.git
+
+cd QRCanvas
+```
+
+---
+
+## Backend Setup
+
+```bash
+cd backend
+
+python -m pip install -r requirements.txt
+
+uvicorn app.main:app --reload
+```
+
+Backend will run at
+
+```
+http://localhost:8000
+```
+
+---
+
+## Frontend Setup
+
+```bash
+cd frontend
+
+npm install
+
+npm run dev
+```
+
+Frontend will run at
+
+```
+http://localhost:5173
+```
+
+---
+
+# Development Workflow
+
+Start Backend
+
+```bash
+cd backend
+
+uvicorn app.main:app --reload
+```
+
+Start Frontend
+
+```bash
+cd frontend
+
+npm run dev
+```
+
+---
+
+# Keyboard Shortcuts
+
+| Shortcut | Action |
+|----------|--------|
+| Ctrl + K | Command Palette |
+| Ctrl + S | Save Design |
+| Ctrl + E | Export QR |
+| Ctrl + D | Duplicate Design |
+
+---
+
+# Supported QR Types
+
+| QR Type | Status |
+|----------|--------|
+| URL | ✅ |
+| Plain Text | ✅ |
+| WiFi | ✅ |
+| Email | ✅ |
+| Phone | ✅ |
+| SMS | ✅ |
+| WhatsApp | ✅ |
+| vCard | ✅ |
+| Calendar | ✅ |
+| Geo Location | ✅ |
+| Social Media | ✅ |
+| App Store | 🚧 |
+| PDF | 🚧 |
+| UPI Payment | 🚧 |
+
+---
+
+# Upcoming Features
+
+- User Authentication
+- Cloud Sync
+- Dynamic QR Codes
+- Scan Analytics
+- Team Workspace
+- QR Collections
+- Shareable Projects
+- Custom Templates
+- API Access
+- Mobile Optimization
+
+---
+
+# Screenshots
+
+```
+docs/screenshots/
+```
+
+Suggested screenshots:
+
+- Landing Page
+- QR Studio
+- Templates
+- Customization Panel
+- Mobile View
+
+---
+
+# Deployment
+
+## Frontend
+
+Vercel
+
+## Backend
+
+Render
+
+## Database
+
+PostgreSQL
+
+---
+
+# Environment Variables
+
+Backend
+
+```env
+DATABASE_URL=
+
+SECRET_KEY=
+
+ALGORITHM=
+
+ACCESS_TOKEN_EXPIRE_MINUTES=
+```
+
+Frontend
+
+```env
+VITE_API_URL=http://localhost:8000
+```
+
+---
+
+# Contributing
+
+Contributions are welcome.
+
+If you find a bug or have a feature suggestion, feel free to open an issue or submit a pull request.
+
+---
+
+# Project Status
+
+Current Version
+
+```
+v1.0.0-beta
+```
+
+Status
+
+```
+Active Development
+```
+
+---
+
+# License
+
+This project is licensed under the MIT License.
+
+---
+
+# Author
+
+**Adarsh Vishwakarma**
+
+GitHub
+
+https://github.com/VishwaAdarsh
+
+---
+
+## Notes
+
+This project is being developed as a modern QR code design platform with a focus on usability, responsive design, and customization.
