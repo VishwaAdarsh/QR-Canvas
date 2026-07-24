@@ -156,7 +156,7 @@ export const RightPanel: React.FC = () => {
   };
 
   return (
-    <aside className="w-80 border-l border-white/10 glass-panel h-[calc(100vh-4rem)] p-4 flex flex-col shrink-0 overflow-hidden">
+    <aside className="w-full md:w-72 lg:w-80 border-t md:border-t-0 md:border-l border-white/10 glass-panel h-full md:h-[calc(100vh-4rem)] p-4 flex flex-col shrink-0 overflow-y-auto md:overflow-hidden custom-scrollbar">
       {/* QUICK STYLE ACTIONS HEADER */}
       <div className="flex items-center space-x-2 pb-3 mb-3 border-b border-white/10 shrink-0">
         <button

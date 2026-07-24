@@ -96,8 +96,8 @@ export const ExportModal: React.FC<ExportModalProps> = ({ isOpen, onClose }) => 
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-fade-in">
-      <div className="w-full max-w-md glass-panel rounded-3xl p-6 border border-white/10 shadow-2xl space-y-6 relative">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/80 backdrop-blur-md animate-fade-in">
+      <div className="w-[94vw] sm:w-full max-w-md glass-panel rounded-3xl p-4 sm:p-6 border border-white/10 shadow-2xl space-y-4 sm:space-y-6 relative max-h-[90vh] overflow-y-auto custom-scrollbar">
         <button
           onClick={onClose}
           className="absolute top-5 right-5 p-1.5 rounded-full hover:bg-white/10 text-slate-400 hover:text-white transition"

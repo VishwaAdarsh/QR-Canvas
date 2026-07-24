@@ -7,7 +7,7 @@ export const LeftSidebar: React.FC = () => {
   const payloadModules = getAllPayloadModules();
 
   return (
-    <aside className="w-64 border-r border-white/10 glass-panel h-[calc(100vh-4rem)] overflow-y-auto p-4 flex flex-col space-y-6 shrink-0 hidden md:block custom-scrollbar">
+    <aside className="w-full md:w-56 lg:w-64 border-b md:border-b-0 md:border-r border-white/10 glass-panel h-full md:h-[calc(100vh-4rem)] overflow-y-auto p-4 flex flex-col space-y-6 shrink-0 custom-scrollbar">
       <div>
         <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3 px-2">
           QR Payload Type

@@ -82,8 +82,8 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center pt-24 px-4 bg-slate-950/80 backdrop-blur-md animate-fade-in">
-      <div className="w-full max-w-xl glass-panel rounded-3xl border border-white/10 shadow-2xl overflow-hidden flex flex-col">
+    <div className="fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-24 px-3 sm:px-4 bg-slate-950/80 backdrop-blur-md animate-fade-in">
+      <div className="w-[94vw] sm:w-full max-w-xl glass-panel rounded-3xl border border-white/10 shadow-2xl overflow-hidden flex flex-col">
         {/* Input */}
         <div className="p-4 border-b border-white/10 flex items-center space-x-3">
           <Search className="w-5 h-5 text-indigo-400" />

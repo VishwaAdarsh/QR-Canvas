@@ -29,8 +29,8 @@ export const TemplatesModal: React.FC<TemplatesModalProps> = ({ isOpen, onClose 
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-slate-950/85 backdrop-blur-md animate-fade-in">
-      <div className="w-full max-w-4xl glass-panel rounded-3xl p-6 border border-white/10 shadow-2xl space-y-6 relative max-h-[85vh] flex flex-col">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-950/85 backdrop-blur-md animate-fade-in">
+      <div className="w-[95vw] lg:max-w-4xl glass-panel rounded-3xl p-4 sm:p-6 border border-white/10 shadow-2xl space-y-4 sm:space-y-6 relative max-h-[88vh] flex flex-col">
         {/* Header */}
         <div className="flex items-center justify-between pb-4 border-b border-white/10">
           <div className="flex items-center space-x-3">

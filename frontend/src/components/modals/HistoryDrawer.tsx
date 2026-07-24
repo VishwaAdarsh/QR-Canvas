@@ -31,7 +31,7 @@ export const HistoryDrawer: React.FC<HistoryDrawerProps> = ({ isOpen, onClose })
 
   return (
     <div className="fixed inset-0 z-50 flex justify-end bg-slate-950/80 backdrop-blur-sm animate-fade-in">
-      <div className="w-full max-w-md h-full glass-panel border-l border-white/10 p-6 flex flex-col space-y-6 shadow-2xl relative">
+      <div className="w-full sm:max-w-md h-full glass-panel border-l border-white/10 p-4 sm:p-6 flex flex-col space-y-4 sm:space-y-6 shadow-2xl relative">
         {/* Drawer Header */}
         <div className="flex items-center justify-between pb-4 border-b border-white/10">
           <div className="flex items-center space-x-3">
