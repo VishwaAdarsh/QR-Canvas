@@ -2,6 +2,34 @@ import type { QRDesignPreset } from '../types/qr';
 
 export const CURATED_TEMPLATES: QRDesignPreset[] = [
   {
+    id: 'preset_classic',
+    name: 'Classic (Recommended)',
+    category: 'Standard',
+    qrType: 'url',
+    samplePayload: { url: 'https://qr-canvas.com' },
+    style: {
+      moduleShape: 'square',
+      eyeStyle: 'square',
+      fgColor: '#000000',
+      bgColor: '#ffffff',
+      transparentBg: false,
+      eyeOuterColor: '#000000',
+      eyeInnerColor: '#000000',
+      useGradient: false,
+      gradientColor2: '#000000',
+      gradientType: 'none',
+      logoScale: 0.2,
+      logoMargin: 2,
+      removeLogoBg: false,
+      logoRadius: 0,
+      frameStyle: 'none',
+      frameText: 'SCAN ME',
+      frameColor: '#000000',
+      frameTextColor: '#ffffff',
+      errorCorrectionLevel: 'M'
+    }
+  },
+  {
     id: 'preset_linear_dark',
     name: 'Linear Tech Dark',
     category: 'Tech & Startups',
