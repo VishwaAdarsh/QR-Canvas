@@ -1,70 +1,10 @@
 import QRCode from 'qrcode';
 import type { QRStyleConfig, QRPayload, QRType } from '../types/qr';
+import { getPayloadModule } from '../payloads/registry';
 
 export function formatQRPayload(qrType: QRType, payload: QRPayload): string {
-  switch (qrType) {
-    case 'url': {
-      let url = payload.url || 'https://qr-canvas.com';
-      if (!url.startsWith('http://') && !url.startsWith('https://')) {
-        url = 'https://' + url;
-      }
-      return url;
-    }
-    case 'text':
-      return payload.text || 'QR Canvas — Create Beautiful QR Codes Effortlessly';
-    case 'email':
-      return `mailto:${payload.email || ''}?subject=${encodeURIComponent(payload.subject || '')}&body=${encodeURIComponent(payload.body || '')}`;
-    case 'phone':
-      return `tel:${payload.phone || ''}`;
-    case 'sms':
-      return `smsto:${payload.phone || ''}:${payload.message || ''}`;
-    case 'whatsapp': {
-      const phone = (payload.phone || '').replace(/\+/g, '').replace(/\s/g, '');
-      return `https://wa.me/${phone}?text=${encodeURIComponent(payload.message || '')}`;
-    }
-    case 'wifi': {
-      const ssid = payload.ssid || '';
-      const pass = payload.password || '';
-      const enc = payload.encryption || 'WPA';
-      const hidden = payload.hidden ? 'true' : 'false';
-      return `WIFI:S:${ssid};T:${enc};P:${pass};H:${hidden};;`;
-    }
-    case 'vcard': {
-      return [
-        'BEGIN:VCARD',
-        'VERSION:3.0',
-        `N:${payload.lastName || ''};${payload.firstName || ''};;;`,
-        `FN:${payload.firstName || ''} ${payload.lastName || ''}`,
-        `ORG:${payload.org || ''}`,
-        `TITLE:${payload.title || ''}`,
-        `TEL;TYPE=CELL:${payload.phone || ''}`,
-        `EMAIL:${payload.email || ''}`,
-        `URL:${payload.url || ''}`,
-        'END:VCARD'
-      ].join('\n');
-    }
-    case 'event': {
-      const start = (payload.startDate || '').replace(/[-:]/g, '');
-      const end = (payload.endDate || '').replace(/[-:]/g, '');
-      return [
-        'BEGIN:VEVENT',
-        `SUMMARY:${payload.eventTitle || 'Event'}`,
-        `DTSTART:${start}`,
-        `DTEND:${end}`,
-        `LOCATION:${payload.location || ''}`,
-        `DESCRIPTION:${payload.description || ''}`,
-        'END:VEVENT'
-      ].join('\n');
-    }
-    case 'location':
-      return `geo:${payload.lat || '0'},${payload.lng || '0'}`;
-    case 'social':
-      return payload.url || 'https://linktr.ee/qrcanvas';
-    case 'payment':
-      return payload.upiId ? `upi://pay?pa=${payload.upiId}&pn=QR%20Canvas` : (payload.url || '');
-    default:
-      return payload.url || payload.text || 'https://qr-canvas.com';
-  }
+  const module = getPayloadModule(qrType);
+  return module.format(payload);
 }
 
 export function isFinderPatternModule(r: number, c: number, size: number): boolean {

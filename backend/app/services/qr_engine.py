@@ -69,11 +69,46 @@ def format_payload(qr_type: str, data: dict) -> str:
             "END:VEVENT"
         )
     elif qr_type == "location":
-        lat = data.get("lat", "0")
-        lng = data.get("lng", "0")
-        return f"geo:{lat},{lng}"
+        url = data.get("locationUrl") or data.get("url")
+        if not url:
+            lat = data.get("lat")
+            lng = data.get("lng")
+            if lat and lng:
+                return f"https://maps.google.com/?q={lat},{lng}"
+            return "https://maps.google.com/?q=San+Francisco+CA"
+        if not url.startswith(("http://", "https://")):
+            url = "https://" + url
+        return url
+    elif qr_type == "social":
+        platform = data.get("socialPlatform", "instagram")
+        handle = data.get("socialHandle", "").lstrip("@").strip()
+        bases = {
+            "instagram": "https://instagram.com/",
+            "x": "https://x.com/",
+            "github": "https://github.com/",
+            "linkedin": "https://linkedin.com/in/",
+            "youtube": "https://youtube.com/@",
+            "facebook": "https://facebook.com/"
+        }
+        return f"{bases.get(platform, 'https://instagram.com/')}{handle}"
+    elif qr_type == "pdf":
+        return data.get("pdfUrl", "https://qr-canvas.com/docs/unconfigured")
+    elif qr_type == "appstore":
+        raw = data.get("appUrl", "").strip()
+        if not raw:
+            return "https://apps.apple.com"
+        if raw.startswith(("http://", "https://")):
+            return raw
+        if data.get("appPlatform") == "android":
+            return f"https://play.google.com/store/apps/details?id={raw}"
+        return f"https://apps.apple.com/app/id{raw}"
+    elif qr_type == "payment":
+        upi = data.get("upiId", "").strip()
+        name = data.get("payeeName", "QR Canvas")
+        amt = f"&am={data.get('amount')}&cu=INR" if data.get("amount") else ""
+        return f"upi://pay?pa={upi}&pn={name}{amt}"
     else:
-        return data.get("content", str(data))
+        return data.get("content") or data.get("url") or data.get("text") or "https://qr-canvas.com"
 
 def generate_svg_qr(req: QRRenderRequest) -> str:
     """Generates clean SVG string using Segno engine."""

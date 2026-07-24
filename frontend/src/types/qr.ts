@@ -61,16 +61,22 @@ export interface QRPayload {
   title?: string;
   lat?: string;
   lng?: string;
+  locationUrl?: string;
   eventTitle?: string;
   startDate?: string;
   endDate?: string;
   location?: string;
   description?: string;
   socialLinks?: { platform: string; url: string }[];
+  socialPlatform?: string;
+  socialHandle?: string;
   pdfUrl?: string;
-  iosUrl?: string;
-  androidUrl?: string;
+  pdfFileName?: string;
+  appPlatform?: string;
+  appUrl?: string;
   upiId?: string;
+  payeeName?: string;
+  amount?: string;
   cryptoAddress?: string;
 }
 

@@ -26,3 +26,22 @@ async def render_png(req: QRRenderRequest):
 @router.get("/health")
 async def health_check():
     return {"status": "online", "service": "QR Canvas API", "version": "1.0.0"}
+
+@router.get("/capabilities")
+async def get_capabilities():
+    """Returns capabilities supported by backend deployment."""
+    import os
+    has_cloud_storage = bool(
+        os.getenv("S3_BUCKET") or 
+        os.getenv("CLOUDINARY_URL") or 
+        os.getenv("AZURE_STORAGE_CONNECTION_STRING") or 
+        os.getenv("GCS_BUCKET")
+    )
+    return {
+        "cloud_storage_configured": has_cloud_storage,
+        "max_upload_size_mb": 10 if has_cloud_storage else 0,
+        "supported_payloads": [
+            "url", "text", "email", "phone", "sms", "whatsapp", "wifi",
+            "vcard", "event", "location", "social", "appstore", "payment"
+        ] + (["pdf"] if has_cloud_storage else [])
+    }

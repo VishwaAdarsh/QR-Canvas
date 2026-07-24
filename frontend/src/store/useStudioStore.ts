@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import type { QRType, QRPayload, QRStyleConfig, SavedQRItem, QRDesignPreset, ModuleShape, EyeStyle } from '../types/qr';
+import { getPayloadModule } from '../payloads/registry';
 
 export const DEFAULT_STYLE: QRStyleConfig = {
   moduleShape: 'rounded',
@@ -23,37 +24,6 @@ export const DEFAULT_STYLE: QRStyleConfig = {
   frameColor: '#4f46e5',
   frameTextColor: '#ffffff',
   errorCorrectionLevel: 'H',
-};
-
-export const DEFAULT_PAYLOADS: Record<QRType, QRPayload> = {
-  url: { url: 'https://qr-canvas.com' },
-  text: { text: 'Welcome to QR Canvas — Create Beautiful QR Codes Effortlessly!' },
-  email: { email: 'hello@qrcanvas.studio', subject: 'Inquiry from QR Canvas', body: 'Hi there!' },
-  phone: { phone: '+1 (555) 234-5678' },
-  sms: { phone: '+1 (555) 234-5678', message: 'Hello! I scanned your QR Canvas code.' },
-  whatsapp: { phone: '+15552345678', message: 'Hi! I found your contact on QR Canvas.' },
-  wifi: { ssid: 'QR_Canvas_5G', password: 'SuperSecretPasscode', encryption: 'WPA', hidden: false },
-  vcard: {
-    firstName: 'Alex',
-    lastName: 'Morgan',
-    org: 'QR Canvas Studio',
-    title: 'Lead Product Designer',
-    phone: '+1 (555) 019-2834',
-    email: 'alex@qrcanvas.studio',
-    url: 'https://qrcanvas.studio'
-  },
-  event: {
-    eventTitle: 'QR Canvas Product Launch',
-    startDate: '2026-09-01T10:00',
-    endDate: '2026-09-01T12:00',
-    location: 'San Francisco, CA & Online',
-    description: 'Join us live for the official launch of QR Canvas 2.0!'
-  },
-  location: { lat: '37.7749', lng: '-122.4194' },
-  social: { url: 'https://twitter.com/qrcanvas' },
-  pdf: { pdfUrl: 'https://qrcanvas.studio/docs/portfolio.pdf' },
-  appstore: { iosUrl: 'https://apps.apple.com/app/qrcanvas', androidUrl: 'https://play.google.com/store/apps/qrcanvas' },
-  payment: { upiId: 'qrcanvas@upi', url: 'https://paypal.me/qrcanvas' }
 };
 
 interface StudioState {
@@ -97,7 +67,7 @@ export const useStudioStore = create<StudioState>()(
   persist(
     (set, get) => ({
       qrType: 'url',
-      payload: DEFAULT_PAYLOADS.url,
+      payload: getPayloadModule('url').defaultPayload,
       style: DEFAULT_STYLE,
       designTitle: 'Untitled QR Design',
       
@@ -111,7 +81,7 @@ export const useStudioStore = create<StudioState>()(
       setQRType: (type: QRType) =>
         set(() => ({
           qrType: type,
-          payload: DEFAULT_PAYLOADS[type] || {}
+          payload: { ...getPayloadModule(type).defaultPayload }
         })),
         
       setPayload: (newPayload: Partial<QRPayload>) =>
@@ -209,7 +179,7 @@ export const useStudioStore = create<StudioState>()(
       resetStudio: () =>
         set({
           qrType: 'url',
-          payload: DEFAULT_PAYLOADS.url,
+          payload: getPayloadModule('url').defaultPayload,
           style: DEFAULT_STYLE,
           designTitle: 'Untitled QR Design'
         })
